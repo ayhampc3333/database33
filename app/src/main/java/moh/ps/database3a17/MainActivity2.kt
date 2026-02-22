@@ -21,12 +21,12 @@ class MainActivity2 : AppCompatActivity() {
         if (sarsheeee.text.isEmpty() ){
             Toast.makeText(this,"يرجى ادخال اسم منتج بطريقة صحيحة",Toast.LENGTH_SHORT).show()
         }else{
-            val adapter = cuostom(this,mydatabase.sarshe(name) as ArrayList<Product>)
+            val adapter = cuostom(this,mydatabase.sarshe(Product(null,name)) )
             listview.adapter=adapter
         }
     }
     fun printData(){
-        val adapter = cuostom(this,mydatabase.databaseToString() as ArrayList<Product>)
+        val adapter = cuostom(this,mydatabase.databaseToString())
         listview.adapter=adapter
     }
 

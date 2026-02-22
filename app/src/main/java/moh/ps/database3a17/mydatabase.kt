@@ -41,15 +41,15 @@ class mydatabase(context: Context) : SQLiteOpenHelper(context, mydatabase.DATABA
 
     }
 
-    fun deletproduct(name:String)/*:Boolean*/ {
+    fun deletproduct(product: Product)/*:Boolean*/ {
         val p0=writableDatabase
-        p0.execSQL("delete from $DATEBASE_TABLE_NAME where $P_NAME=\"${name}\";")
+        p0.execSQL("delete from $DATEBASE_TABLE_NAME where $P_NAME=\"${product.name}\";")
 
     }
-    fun sarshe(name:String):List<Product>{
+    fun sarshe(product: Product):ArrayList<Product>{
         var p0String = ArrayList<Product>()
         val p0=writableDatabase
-        var query = "select * from $DATEBASE_TABLE_NAME where $P_NAME=\"${name}\";"
+        var query = "select * from $DATEBASE_TABLE_NAME where $P_NAME=\"${product.name}\";"
         val c=p0.rawQuery(query,null)
         p0String= ArrayList(c.count)
 
@@ -63,7 +63,7 @@ class mydatabase(context: Context) : SQLiteOpenHelper(context, mydatabase.DATABA
         return p0String
     }
 
-    fun databaseToString(): List<Product>{
+    fun databaseToString(): ArrayList<Product>{
         var p0String = ArrayList<Product>()
         val p0=writableDatabase
         var query = "select * from $DATEBASE_TABLE_NAME where 1"

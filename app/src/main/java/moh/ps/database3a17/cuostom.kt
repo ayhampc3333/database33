@@ -16,22 +16,22 @@ class cuostom(context: Context, private var objects: ArrayList<Product>) : Array
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         var l: LayoutInflater =LayoutInflater.from(context)
         var custom:View=l.inflate(R.layout.item,parent,false)
-        val r:Product = getItem(position)!!
-        custom.textViewtsmem3.text= "ID:${r.id}"
-        custom.textViewtsmem2.text="name:${r.name}"
-        custom.textViewtsmem.text="Q:${r.q}"
+        val posi:Product = getItem(position)!!
+        custom.textViewtsmem3.text= "ID:${posi.id}"
+        custom.textViewtsmem2.text="name:${posi.name}"
+        custom.textViewtsmem.text="Q:${posi.q}"
         mydb=mydatabase(context)
 
         custom.imageViewtsmem.setOnClickListener {
 
-            mydb.deletproduct(r.name)
+            mydb.deletproduct(Product(null,posi.name))
             objects.removeAt(position)
             notifyDataSetChanged()
         }
         custom.Detailsimage.setOnClickListener {
             val bulider= AlertDialog.Builder(context)
             bulider.setTitle("تفاصيل عن المنتج")
-            bulider.setMessage("ID:${r.name} \n \n name:${r.name} \n \n Q:${r.q}")
+            bulider.setMessage("ID:${posi.name} \n \n name:${posi.name} \n \n Q:${posi.q}")
             bulider.setPositiveButton("موافق"){ _: DialogInterface, _:Int ->
 
             }
@@ -39,9 +39,9 @@ class cuostom(context: Context, private var objects: ArrayList<Product>) : Array
             dialog.show()
         }
 
-       // var productsimage= mapOf("اكمول" to R.drawable.acamol ,"بنادول" to R.drawable.panadol )
-       // var imge=productsimage[r.name]?: R.drawable.nophoto
-       // custom.imageView.setImageResource(imge)
+        var productsimage= mapOf("اكمول" to R.drawable.acamol ,"بنادول" to R.drawable.panadol )
+        var imge=productsimage[posi.name]?: R.drawable.nophoto
+        custom.imageView.setImageResource(imge)
 
 
 

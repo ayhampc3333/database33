@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         if ( nameproducer.text.isEmpty() || numBox.text.isEmpty()){
             Toast.makeText(this,"يرجى ادخال البيانات بشكل صحيح",Toast.LENGTH_SHORT).show()
         }else {
-            mydatebase.addproduct(Product(0,nameProduct,quantity))
+            mydatebase.addproduct(Product(null,nameProduct,quantity))
             numBox.text.clear()
             nameproducer.text.clear()
 
@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
     }
     fun delete(view: View) {
         val nameproduct = nameproducer.text.toString()
-        mydatebase.deletproduct(nameproduct)
+        mydatebase.deletproduct(Product(null,nameproduct))
         if (nameproducer.text.isEmpty()){
             Toast.makeText(this,"يرجى ادخال البيانات بشكل صحيح",Toast.LENGTH_SHORT).show()
         }
